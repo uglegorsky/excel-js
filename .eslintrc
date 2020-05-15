@@ -11,6 +11,8 @@
     "object-curly-spacing": "off",
     "arrow-parens": "off",
     "require-jsdoc": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "operator-linebreak": "off",
+    "indent": "off"
   }
 }
