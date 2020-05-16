@@ -17,16 +17,19 @@
       border: 1px solid $border-color;
       background: #fbfbfb;
       border-top: none;
+      position: relative;
     }
     &-data {
       display: flex;
     }
   }
   &__column {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: $cell-width;
+    width: $cell-width;
+    min-width: $cell-width / 2;
     height: 100%;
     border: 1px solid $border-color;
     background: #fbfbfb;
@@ -34,7 +37,8 @@
     border-top: none;
   }
   &__cell {
-    min-width: $cell-width;
+    min-width: $cell-width / 2;
+    width: $cell-width;
     display: flex;
     align-items: center;
     height: 100%;
@@ -51,5 +55,27 @@
       border: 2px solid #3c74ff;
       z-index: 2;
     }
+  }
+  &__col-resize,
+  &__row-resize {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #3c74ff;
+    opacity: 0;
+    z-index: 1000;
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+  &__col-resize {
+    top: 0;
+    width: 4px;
+    cursor: ew-resize;
+  }
+  &__row-resize {
+    left: 0;
+    height: 4px;
+    cursor: ns-resize;
   }
 }

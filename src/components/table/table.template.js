@@ -32,24 +32,33 @@ function toChar(_, index) {
   return String.fromCharCode(CODES.A + index);
 }
 
-function toColumn(col) {
+function toColumn(col, index) {
   return `
-    <div class="table__column">${col}</div>
+    <div class="table__column" data-type="resizable" data-col="${index}">
+      ${col}
+      <div class="table__col-resize" data-resize="col"></div>
+    </div>
   `;
 }
 
 function createRow(index, content) {
+  const resize = index
+    ? `<div class="table__row-resize" data-resize="row"></div>`
+    : '';
   return `
-    <div class="table__row">
-      <div class="table__row-info">${index}</div>
+    <div class="table__row" data-type="resizable">
+      <div class="table__row-info">
+        ${index}
+        ${resize} 
+      </div>
       <div class="table__row-data">${content}</div>
     </div>
   `;
 }
 
-function toCell(content) {
+function toCell(content, col) {
   return `
-    <div class="table__cell" contenteditable>
+    <div class="table__cell" contenteditable data-col="${col}">
       ${content}
     </div>
   `;
