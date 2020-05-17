@@ -53,8 +53,36 @@ class DOM {
     return this.$el.dataset;
   }
 
+  find(selector) {
+    return $(this.$el.querySelector(selector));
+  }
+
   findAll(selector) {
     return this.$el.querySelectorAll(selector);
+  }
+
+  addClass(classes) {
+    return this.$el.classList.add(classes);
+  }
+
+  removeClass(classes) {
+    return this.$el.classList.remove(classes);
+  }
+
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':');
+      return {
+        row: +parsed[0],
+        col: +parsed[1],
+      };
+    }
+    return this.data.id;
+  }
+
+  focus() {
+    this.$el.focus();
+    return this;
   }
 
   css(styles = {}) {
