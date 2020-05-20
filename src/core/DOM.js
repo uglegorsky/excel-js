@@ -14,6 +14,19 @@ class DOM {
     return this.$el.outerHTML.trim();
   }
 
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.textContent = text;
+      return this;
+    }
+
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim();
+    }
+
+    return this.$el.textContent.trim();
+  }
+
   clear() {
     this.html('');
     return this;
@@ -62,11 +75,13 @@ class DOM {
   }
 
   addClass(classes) {
-    return this.$el.classList.add(classes);
+    this.$el.classList.add(classes);
+    return this;
   }
 
   removeClass(classes) {
-    return this.$el.classList.remove(classes);
+    this.$el.classList.remove(classes);
+    return this;
   }
 
   id(parse) {
