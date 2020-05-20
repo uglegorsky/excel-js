@@ -20,9 +20,9 @@ export function createTable(rowsCount = 10) {
   rows.push(createRow('', colsData));
 
   // Create table cells
-  for (let i = 0; i < rowsCount; i++) {
-    const cells = new Array(colsCount).fill('').map(toCell).join('');
-    rows.push(createRow(i + 1, cells));
+  for (let row = 0; row < rowsCount; row++) {
+    const cells = new Array(colsCount).fill('').map(toCell(row)).join('');
+    rows.push(createRow(row + 1, cells));
   }
 
   return rows.join('');
@@ -56,10 +56,16 @@ function createRow(index, content) {
   `;
 }
 
-function toCell(content, col) {
-  return `
-    <div class="table__cell" contenteditable data-col="${col}">
-      ${content}
-    </div>
-  `;
+function toCell(row) {
+  return function (_, col) {
+    return `
+      <div
+        class="table__cell"
+        contenteditable
+        data-col="${col}"
+        data-type="cell"
+        data-id="${row}:${col}"
+      ></div>
+    `;
+  };
 }
